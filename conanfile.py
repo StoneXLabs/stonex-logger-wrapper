@@ -18,7 +18,7 @@ class StonexLogger(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}  
-    requires = ["fmt/9.1.0@enterprise_messaging/test","spdlog/1.11.0@enterprise_messaging/test","log4cxx/0.12.1","benchmark/1.7.1"]
+    requires = ["fmt/9.1.0@enterprise_messaging/test","spdlog/1.11.0@enterprise_messaging/test","log4cxx/0.12.1"]
     generators = "cmake"
     
 
