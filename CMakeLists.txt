@@ -29,4 +29,4 @@ endif()
     
 add_subdirectory(stonex-logger-wrapper-lib)
 add_subdirectory(stonex-logger-wrapper-app)
-add_subdirectory(stonex-logger-wrapper-benchmark)
+#add_subdirectory(stonex-logger-wrapper-benchmark)
