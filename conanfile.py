@@ -12,9 +12,9 @@ class StonexLogger(ConanFile):
     version = get_verion_tag()
     license = "<Put the package license here>"
     author = "Krzysztof Obrebski krzysztof.obrebski@stonex.com"
-    url = "https://bitbucket.gaincapital.com/projects/EM/repos/messaging-cms-client"
-    description = "amqp cms messaging library"
-    topics = ("logger")
+    url = "https://github.com/StoneXLabs/stonex-logger-wrapper.git"
+    description = "stonex logger wrapper"
+    topics = ("logger", "spdlog", "log4cxx")
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}  
