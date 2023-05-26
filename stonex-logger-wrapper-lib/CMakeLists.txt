@@ -34,3 +34,5 @@ target_link_libraries(stonex-logger-wrapper-lib
 	CONAN_PKG::spdlog
 	CONAN_PKG::log4cxx
 	)
+
+target_compile_definitions(stonex-logger-wrapper-lib PUBLIC SPDLOG_FMT_EXTERNAL)
