@@ -12,3 +12,7 @@ Copyright 2004-2023 The Apache Software Foundation
 spdlog
 Copyright (c) 2016 Gabi Melman.  
 (https://github.com/gabime/spdlog/blob/master/LICENSE)
+
+Copyright Google LLC
+benchmark
+(https://github.com/google/benchmark/blob/main/LICENSE)
