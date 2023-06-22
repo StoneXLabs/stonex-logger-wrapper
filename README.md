@@ -1,5 +1,4 @@
 # stonex-logger-wrapper
-# stonex-logger-wrapper
 
 [0.0.1]
 logging wrapper for:
