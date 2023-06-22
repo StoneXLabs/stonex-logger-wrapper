@@ -10,7 +10,7 @@ def get_verion_tag():
 class StonexLogger(ConanFile):
     name = "stonex-logger-wrapper"
     version = get_verion_tag()
-    license = "<Put the package license here>"
+    license = "Apache License 2.0"
     author = "Krzysztof Obrebski krzysztof.obrebski@stonex.com"
     url = "https://github.com/StoneXLabs/stonex-logger-wrapper.git"
     description = "stonex logger wrapper"
