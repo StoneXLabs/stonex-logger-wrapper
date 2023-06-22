@@ -9,6 +9,7 @@ file(GLOB sourceFiles
 	${PROJECT_SOURCE_DIR}/src/Log4CxxLogger/*.cpp
 	${PROJECT_SOURCE_DIR}/src/SpdLogLogger/*.cpp
 	${PROJECT_SOURCE_DIR}/src/StdOutLogger/*.cpp
+	${PROJECT_SOURCE_DIR}/src/LoggerFactory/*.cpp
 	)
 	
 file(GLOB headerFiles 
@@ -16,6 +17,7 @@ file(GLOB headerFiles
 	${PROJECT_SOURCE_DIR}/include/Log4CxxLogger/*.h
 	${PROJECT_SOURCE_DIR}/include/SpdLogLogger/*.h
 	${PROJECT_SOURCE_DIR}/include/StdOutLogger/*.h
+	${PROJECT_SOURCE_DIR}/include/LoggerFactory/*.h
 	)
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${sourceFiles} ${headerFiles})
