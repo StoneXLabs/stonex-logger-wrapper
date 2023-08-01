@@ -19,8 +19,8 @@
 
 #include <LoggerFactory/LoggerFactory.h>
 #include <Log4CxxLogger/Log4CxxLogger.h>
-#include <STDOutLogger/STDOutLogger.h>
-#include <SPDLogLogger/SpdLogLogger.h>
+#include <StdOutLogger/StdOutLogger.h>
+#include <SpdLogLogger/SpdLogLogger.h>
 
 logger_ptr LoggerFactory::create(const std::string& type)
 {
