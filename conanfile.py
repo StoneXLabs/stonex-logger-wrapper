@@ -54,10 +54,12 @@ class StonexLogger(ConanFile):
 
 
     def package(self):
-        self.copy("*.h", dst="include",src="stonex-logger-wrapper-lib\include")
+        self.copy("*.h", dst="include",src="stonex-logger-wrapper-lib/include")
         self.copy("*.lib", dst="lib",src="lib", keep_path=False)
         self.copy("*.pdb", dst="lib",src="lib", keep_path=False)
         self.copy("*.exe", dst="bin",src="bin", keep_path=False)
+        self.copy("*.a", dst="lib",src="lib", keep_path=False)
+        self.copy("*.so*", dst="lib",src="lib", keep_path=False)
 
 
     def package_info(self):
