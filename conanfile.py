@@ -20,6 +20,11 @@ class StonexLogger(ConanFile):
     default_options = {"shared": False, "fPIC": True}  
     generators = "cmake"
 
+    def configure(self):
+        self.options["fmt"].shared = self.options.shared
+        self.options["spdlog"].shared = self.options.shared
+        self.options["log4cxx"].shared = self.options.shared
+
     def requirements(self):
         if self.settings.os == "Linux":
            self.requires("fmt/9.1.0")
@@ -32,9 +37,6 @@ class StonexLogger(ConanFile):
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
-        self.options["fmt"].shared = self.options.shared
-        self.options["spdlog"].shared = self.options.shared
-        self.options["log4cxx"].shared = self.options.shared
 
 
     def source(self):
@@ -54,8 +56,10 @@ class StonexLogger(ConanFile):
 
 
     def package(self):
-        self.copy("*.h", dst="include",src="stonex-logger-wrapper-lib\include")
+        self.copy("*.h", dst="include",src="stonex-logger-wrapper-lib/include")
         self.copy("*.lib", dst="lib",src="lib", keep_path=False)
+        self.copy("*.a", dst="lib",src="lib", keep_path=False)
+        self.copy("*.so", dst="lib",src="lib", keep_path=False)
         self.copy("*.pdb", dst="lib",src="lib", keep_path=False)
         self.copy("*.exe", dst="bin",src="bin", keep_path=False)
 
