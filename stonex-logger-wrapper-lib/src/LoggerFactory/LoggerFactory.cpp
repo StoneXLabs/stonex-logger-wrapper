@@ -22,18 +22,45 @@
 #include <STDOutLogger/STDOutLogger.h>
 #include <SPDLogLogger/SpdLogLogger.h>
 
-logger_ptr LoggerFactory::create(const std::string& type)
+LoggerFactory* LoggerFactory::mInstance = nullptr;
+
+void stonex::logger::initialize(LoggerFactory::LoggerType type)
 {
-	if (type == "terminal") {
-		return std::make_shared<StdOutLogger>();
-	}
-	else if (type == "log4cxx") {
-		return std::make_shared<Log4CxxLogger>();
-	}
-	else if (type == "spdlog") {
-		return std::make_shared<SpdLogLogger>();
-	}
-	else {
+	LoggerFactory::getInstance(type);
+}
+
+logger_ptr LoggerFactory::create(const std::string& id)
+{
+	switch (mType)
+	{
+	case LoggerType::STDOUT:
+		return std::make_shared<StdOutLogger>(id);
+		break;
+	case LoggerType::SPDLOG:
+		return std::make_shared<SpdLogLogger>(id);
+		break;
+	case LoggerType::LOG4CXX:
+		return std::make_shared<Log4CxxLogger>(id);
+		break;
+	default:
 		return nullptr;
+		break;
 	}
+}
+
+LoggerFactory& LoggerFactory::getInstance(LoggerType type)
+{
+	if (mInstance == nullptr)
+	{
+		mInstance = new LoggerFactory(type);
+		return *mInstance;
+	}
+	else if (mInstance != nullptr)
+		return *mInstance;
+}
+
+
+LoggerFactory::LoggerFactory(LoggerType type)
+	:mType(type)
+{
 }

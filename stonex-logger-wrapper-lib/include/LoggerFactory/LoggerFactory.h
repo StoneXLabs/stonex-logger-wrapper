@@ -26,6 +26,23 @@ typedef std::shared_ptr<StonexLogger> logger_ptr;
 class LoggerFactory
 {
 public:
-	static logger_ptr create(const std::string& type);
+	enum class LoggerType
+	{
+		LOG4CXX,
+		SPDLOG,
+		STDOUT,
+		UNKNOWN
+	};
+
+	logger_ptr create(const std::string& id);
+	static LoggerFactory& getInstance(LoggerType type = LoggerType::UNKNOWN);
+private:
+	explicit LoggerFactory(LoggerType type);
+	const LoggerType mType;
+	static LoggerFactory* mInstance;
 };
 
+namespace stonex::logger
+{
+	void initialize(LoggerFactory::LoggerType type);
+}
