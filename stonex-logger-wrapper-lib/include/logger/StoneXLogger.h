@@ -36,4 +36,7 @@ class StonexLogger : public std::enable_shared_from_this<StonexLogger> {
 public:
 	virtual ~StonexLogger() = default;
 	virtual void log(SEVERITY severity, const char* message) = 0;
+	virtual void log(SEVERITY severity, const std::string& message) = 0;
 };
+
+using StonexLoggerPtr = std::shared_ptr<StonexLogger>;
