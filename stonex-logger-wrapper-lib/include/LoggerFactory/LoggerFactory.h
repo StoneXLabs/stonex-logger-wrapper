@@ -25,6 +25,15 @@ typedef std::shared_ptr<StonexLogger> logger_ptr;
 
 class LoggerFactory
 {
+	class UnknownLogger final : public StonexLogger
+	{
+	public:
+		explicit UnknownLogger(const std::string& id) {};
+		void log(SEVERITY severity, const char* message) override {};
+		void log(SEVERITY severity, const std::string& message) override {};
+
+	};
+
 public:
 	enum class LoggerType
 	{

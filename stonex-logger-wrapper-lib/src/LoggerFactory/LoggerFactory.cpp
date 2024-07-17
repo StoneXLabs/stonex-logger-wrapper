@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 StoneX Financial Ltd.
+ * Copyright 2023-2024 StoneX Financial Ltd.
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -42,10 +42,14 @@ logger_ptr LoggerFactory::create(const std::string& id)
 	case LoggerType::LOG4CXX:
 		return std::make_shared<Log4CxxLogger>(id);
 		break;
+	case LoggerType::UNKNOWN:
+		return std::make_shared<UnknownLogger>(id);
+		break;
 	default:
-		return nullptr;
+		return std::make_shared<UnknownLogger>(id);
 		break;
 	}
+	
 }
 
 LoggerFactory& LoggerFactory::getInstance(LoggerType type)

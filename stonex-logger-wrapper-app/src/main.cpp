@@ -26,7 +26,7 @@
 #include <sstream>
 #include <log4cxx/xml/domconfigurator.h>
 
-#define LOGGER_LOG4CXX
+//#define LOGGER_LOG4CXX
 
 #ifdef LOGGER_LOG4CXX
 #define LOGGER_TYPE LoggerFactory::LoggerType::LOG4CXX
@@ -75,7 +75,6 @@ private:
 };
 
 void test_1() {
-	stonex::logger::initialize(LOGGER_TYPE);
 
 	switch (LOGGER_TYPE)
 	{
@@ -158,7 +157,7 @@ void test_synchronization()
 int main()
 {
 	stonex::logger::initialize(LOGGER_TYPE);
-	//test_1();
+	test_1();
     test_synchronization();
 
 	return 0;
