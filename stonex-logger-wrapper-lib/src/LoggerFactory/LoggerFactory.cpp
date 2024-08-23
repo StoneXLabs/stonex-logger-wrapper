@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 StoneX Financial Ltd.
+ * Copyright 2023-2024 StoneX Financial Ltd.
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -22,18 +22,49 @@
 #include <STDOutLogger/STDOutLogger.h>
 #include <SPDLogLogger/SpdLogLogger.h>
 
-logger_ptr LoggerFactory::create(const std::string& type)
+LoggerFactory* LoggerFactory::mInstance = nullptr;
+
+void stonex::logger::initialize(LoggerFactory::LoggerType type)
 {
-	if (type == "terminal") {
-		return std::make_shared<StdOutLogger>();
+	LoggerFactory::getInstance(type);
+}
+
+logger_ptr LoggerFactory::create(const std::string& id)
+{
+	switch (mType)
+	{
+	case LoggerType::STDOUT:
+		return std::make_shared<StdOutLogger>(id);
+		break;
+	case LoggerType::SPDLOG:
+		return std::make_shared<SpdLogLogger>(id);
+		break;
+	case LoggerType::LOG4CXX:
+		return std::make_shared<Log4CxxLogger>(id);
+		break;
+	case LoggerType::UNKNOWN:
+		return std::make_shared<UnknownLogger>(id);
+		break;
+	default:
+		return std::make_shared<UnknownLogger>(id);
+		break;
 	}
-	else if (type == "log4cxx") {
-		return std::make_shared<Log4CxxLogger>();
+	
+}
+
+LoggerFactory& LoggerFactory::getInstance(LoggerType type)
+{
+	if (mInstance == nullptr)
+	{
+		mInstance = new LoggerFactory(type);
+		return *mInstance;
 	}
-	else if (type == "spdlog") {
-		return std::make_shared<SpdLogLogger>();
-	}
-	else {
-		return nullptr;
-	}
+	else if (mInstance != nullptr)
+		return *mInstance;
+}
+
+
+LoggerFactory::LoggerFactory(LoggerType type)
+	:mType(type)
+{
 }

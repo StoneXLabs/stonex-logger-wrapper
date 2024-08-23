@@ -22,3 +22,5 @@ target_link_libraries(stonex-logger-wrapper-app
 	CONAN_PKG::fmt
 	stonex-logger-wrapper-lib
 	)
+	
+configure_file(${PROJECT_SOURCE_DIR}/logger.xml ${CMAKE_CURRENT_BINARY_DIR}/../bin/logger.xml COPYONLY)    
